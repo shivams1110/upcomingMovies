@@ -14,25 +14,23 @@
     tools:showIn="@layout/activity_info">
 
     <TextView
-        android:text="Developed By"
-        android:gravity="center"
-        android:textSize="28sp"
         android:id="@+id/txt"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/developed_by"
+        android:textSize="28sp" />
 
     <TextView
-        android:text="Shivam Sharma"
-        android:layout_below="@+id/txt"
-        android:gravity="center"
-        android:textSize="28sp"
-        android:layout_marginTop="10dp"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/shivam_"
+        android:textSize="28sp" />
 
 
 </RelativeLayout>

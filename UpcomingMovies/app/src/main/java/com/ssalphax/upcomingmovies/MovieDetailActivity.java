@@ -71,10 +71,6 @@ public class MovieDetailActivity extends AppCompatActivity implements ViewPager.
         cardView = (CardView) findViewById(R.id.card_view);
         cardView.setVisibility(View.INVISIBLE);
 
-//        btnNext.setOnClickListener(this);
-//        btnFinish.setOnClickListener(this);
-
-
         if (checkInternet()) {
             getImage();
 
@@ -85,8 +81,6 @@ public class MovieDetailActivity extends AppCompatActivity implements ViewPager.
             progressBar.setVisibility(View.GONE);
 
         }
-        //intro_images.setAdapter(mAdapter);
-
 
     }
 
@@ -103,7 +97,6 @@ public class MovieDetailActivity extends AppCompatActivity implements ViewPager.
     }
 
     private void getMovieDetail() {
-
 
         HttpAgent.get("http://api.themoviedb.org/3/movie/" + id + "?api_key=b7cd3340a794e5a2f35e3abb820b497f")
                 .goJson(new JsonCallback() {
@@ -125,72 +118,47 @@ public class MovieDetailActivity extends AppCompatActivity implements ViewPager.
                     }
                 });
 
-        // http://api.themoviedb.org/3/movie/<movie-id>?api_key=b7cd3340a794e5a2f35e3abb820b497f
     }
 
     private void putDetail(JSONObject jsonResults) throws JSONException {
 
         String overView = jsonResults.getString("overview");
         String title = jsonResults.getString("title");
-
         double popularity = jsonResults.getDouble("popularity");
-
-
         txtTitle.setText(title);
         txtOverView.setText(overView);
         ratingBar.setIsIndicator(true);
         ratingBar.setRating(((float) popularity / 20));
-
         toolbar.setTitle(title);
-
         progressBar.setVisibility(View.GONE);
         cardView.setVisibility(View.VISIBLE);
-
     }
 
     private void getImage() {
-
-
         HttpAgent.get("https://api.themoviedb.org/3/movie/" + id + "/images?api_key=b7cd3340a794e5a2f35e3abb820b497f")
-
                 .goJson(new JsonCallback() {
                     @Override
                     protected void onDone(boolean success, JSONObject jsonResults) {
-
-                        Log.d("data Fron", jsonResults.toString());
                         try {
                             putImage(jsonResults);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 });
-
-
     }
 
     private void putImage(JSONObject jsonResults) throws JSONException {
-
         JSONArray array = jsonResults.getJSONArray("backdrops");
-
         for (int i = 0; i < array.length(); i++) {
-
-
             JSONObject object = array.getJSONObject(i);
             String file_path = object.getString("file_path");
-
             mImageResources.add(file_path);
-
-
         }
-
-
         mAdapter = new ViewPagerAdapter(this, mImageResources);
         intro_images.setAdapter(mAdapter);
         intro_images.setCurrentItem(0);
         intro_images.setOnPageChangeListener(this);
-
 
         setUiPageViewController();
 
@@ -198,7 +166,6 @@ public class MovieDetailActivity extends AppCompatActivity implements ViewPager.
     }
 
     private void setUiPageViewController() {
-
         dotsCount = mAdapter.getCount();
         dots = new ImageView[dotsCount];
 

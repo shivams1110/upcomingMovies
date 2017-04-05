@@ -41,15 +41,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
-
         recyclerView=(RecyclerView)findViewById(R.id.recycler_movie_list);
-
         progressBar=(ProgressBar)findViewById(R.id.progress_bar);
         textView=(TextView)findViewById(R.id.txt_internet);
         textView.setVisibility(View.GONE);
-
 
         if (checkInternet()){
             getMovieList();
@@ -58,13 +54,7 @@ public class MainActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
 
     }
 
@@ -87,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 .goJson(new JsonCallback() {
                     @Override
                     protected void onDone(boolean success, JSONObject jsonResults) {
-
-//                        Log.d("data Fron",jsonResults.toString());
                         if (success) {
                             try {
                                 putData(jsonResults);
@@ -100,13 +88,9 @@ public class MainActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
 
                         }
-
                     }
 
                 });
-
-
-
     }
 
     private void putData(JSONObject jsonResults) throws JSONException {
@@ -140,17 +124,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         adapter=new MainAdapter(MainActivity.this,list);
-
-
-
-
         recyclerView.setAdapter(adapter);
-
         progressBar.setVisibility(View.GONE);
-
-
-
-
     }
 
     @Override
